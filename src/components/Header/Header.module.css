@@ -2,7 +2,7 @@
   background-color: #282c34;
   height: 60px;
   margin: 0;
-  padding-left: 40px;
+  padding-left: 80px;
   border-bottom: 2px solid #484f5c;
   display: flex;
   flex-direction: row;
@@ -10,8 +10,12 @@
   justify-content: flex-start;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .title {
-  color: #d1d8e4;
+  color: rgb(240, 240, 240);
   font-family: 'Roboto';
   font-size: 28px;
   margin: 0;

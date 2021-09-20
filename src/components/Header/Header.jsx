@@ -6,7 +6,7 @@ class Header extends React.Component {
   render() {
     return (
       <header className={styles.header}>
-        <Link to="/">
+        <Link className={styles.link} to="/">
           <h1 className={styles.title}>{this.props.title}</h1>
         </Link>
       </header>

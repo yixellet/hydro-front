@@ -1,0 +1,16 @@
+.block {
+  display: flex;
+  flex-direction: column;
+}
+
+.decade {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.decadeNumber {
+  color: #fff;
+  margin: 0 10px 0 0;
+  font-size: 0.8rem;
+}
