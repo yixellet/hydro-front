@@ -1,7 +1,5 @@
 .map {
-  margin: 50px;
-  width: 800px;
-  height: calc(100% - 100px);
+  height: 800px;
   border: 1px solid rgb(76, 105, 124);
   border-radius: 10px;
 }
@@ -69,7 +67,7 @@
 .text {
   font-style:normal;
   font-weight:400;
-  font-size:5px;
+  font-size:0.35rem;
   line-height:1.25;
   font-family:'Roboto Condensed';
   letter-spacing:0;
@@ -91,4 +89,16 @@
   stroke-opacity:1;
   paint-order:fill markers stroke;
   stop-color:#000
+}
+
+.settlement {
+  fill:#fff;
+  stroke:#fff;
+  stroke-width:.52916667;
+  stroke-linecap:butt;
+  stroke-linejoin:miter;
+  stroke-opacity:1;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  fill-opacity:.12121212
 }

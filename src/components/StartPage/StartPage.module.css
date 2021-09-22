@@ -2,16 +2,20 @@
   width: 100vw;
   height: calc(100vh - 70px);
   margin: 0;
+}
+
+.content {
+  margin: 40px 80px;
+  width: calc(100% - 140px);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
 .nav {
   width: 40%;
-  height: 90%;
-  margin: 50px;
+  height: 800px;
   overflow-y: scroll;
 }
 
@@ -19,4 +23,5 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  height: 800px;
 }

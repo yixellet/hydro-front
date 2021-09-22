@@ -15,7 +15,7 @@ class Years extends React.Component {
                 <p className={styles.decadeNumber}>{decade}</p>
                 {
                   this.years.map((year) => {
-                    return <YearBox key={decade + year} year={decade + year} />
+                    return <YearBox key={decade + year} year={decade + year} full={true} />
                   })
                 }
               </div>

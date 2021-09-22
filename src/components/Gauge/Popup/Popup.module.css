@@ -1,0 +1,123 @@
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.459);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  width: 1000px;
+  height: 90%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  position: relative;
+}
+
+.content {
+  width: calc(100% - 60px);
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(35, 53, 78);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background-color: crimson;
+}
+
+.svg {  
+  width: 15px;
+  height: 15px;
+}
+
+.cross {
+  fill:none;
+  stroke:#ffffff;
+  stroke-width:1.05833;
+  stroke-linecap:round;
+  stroke-linejoin:miter;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  stroke-opacity:1;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: 'Roboto';
+  margin: 0;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  font-family: 'Roboto';
+  font-size: 0.9rem;
+  margin: 3px;
+}
+
+.buttonBlock {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  cursor: pointer;
+  background-color: #4cacaf;
+  border: none;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  font-family: 'Roboto';
+  margin-left: 20px;
+}
+
+.button:hover {
+  background-color: #8bdcdf;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.thead {
+  background-color: rgb(255, 206, 216);
+}

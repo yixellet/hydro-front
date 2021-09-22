@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
 import StartPage from '../StartPage/StartPage';
 import Gauge from '../Gauge/Gauge';
+import data from '../../data/dateConverter/out';
 
 class App extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class App extends React.Component {
             <StartPage gaugeList={this.props.gaugeList} />
           </Route>
           <Route path="/gauge">
-            <Gauge info={this.props.gaugeList[2]} />
+            <Gauge info={this.props.gaugeList[14]} data={data} />
           </Route>
         </Switch>
       </>

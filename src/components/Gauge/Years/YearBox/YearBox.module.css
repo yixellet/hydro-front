@@ -2,6 +2,13 @@
   width: 15px;
   height: 15px;
   margin: 0;
+  border: 1px solid rgb(221, 221, 221);
+}
+
+.box_full {
   background-color: rgb(115, 180, 115);
+  width: 15px;
+  height: 15px;
+  margin: 0;
   border: 1px solid rgb(221, 221, 221);
 }
