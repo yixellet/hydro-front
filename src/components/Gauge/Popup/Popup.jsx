@@ -1,4 +1,5 @@
 import React from 'react';
+import extr from '../../../utils/extrSimDates';
 import styles from './Popup.module.css';
 
 class Popup extends React.Component {
@@ -44,8 +45,8 @@ class Popup extends React.Component {
                     return <tr key={idx}>
                       <td>{day}</td>
                       {
-                        this.props.data.map((d) => {
-                          return null
+                        extr(this.props.data, day).map((d) => {
+                          return <td>{d['value']}</td>
                         })
                       }
                     </tr>
