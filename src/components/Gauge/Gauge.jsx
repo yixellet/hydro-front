@@ -8,13 +8,28 @@ import dateToStr from '../../utils/dates';
 import styles from './Gauge.module.css';
 
 class Gauge extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      gaugeInfo: null
+    }
+  }
+  componentDidMount() {
+    console.log(this.props.gaugeId)
+    this.props.api.getGauge(this.props.gaugeId)
+      .then((data) => {
+        this.setState({gaugeInfo: data})
+      })
+  }
+
   render() {
     return (
       <main className={styles.main}>
         <article className={styles.content}>
           <div className={styles.data}>
-            <h1 className={styles.title}>{this.props.info.name} <span className={styles.river}>({this.props.info.river})</span></h1>
-            <p className={styles.code}>{this.props.info.code}</p>
+            <h1 className={styles.title}>{this.state.gaugeInfo.name} <span className={styles.river}>({this.state.gaugeInfo.stream})</span></h1>
+            <p className={styles.code}>{this.state.gaugeInfo.code}</p>
             <ul className={styles.zero}><h2 className={styles.blockTitle}>Абсолютная отметка нуля:</h2>
               {
                 this.props.info.refElevs.map((elev, idx) => {
@@ -68,11 +83,11 @@ class Gauge extends React.Component {
           </div>
           <Map map={mapAstr}/>
         </article>
-        <Popup gaugeName = {this.props.info.name}
+        {/*<Popup gaugeName = {this.props.info.name}
                river = {this.props.info.river}
                year = {1978}
                elevs = {this.props.info.refElevs}
-               data = {this.props.data} />
+            data = {this.props.data} />*/}
       </main>
     );
   }

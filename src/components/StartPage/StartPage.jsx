@@ -13,7 +13,7 @@ class StartPage extends React.Component {
             <ul className={styles.list}>
               {
                 this.props.gaugeList.map((item) => {
-                  return <ListItem name={item.name} key={item.code} />
+                  return <ListItem name={item.name} key={item.code} onClick={() => this.props.onGaugeClick(item.id_1)} />
                 })
               }
             </ul>

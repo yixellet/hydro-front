@@ -80,9 +80,9 @@ const mapCom = <svg viewBox="0 0 1000 1000" className={styles.map} version="1.2"
     <tspan x="-29.994" y="21.732"><tspan>Красный Яр</tspan></tspan></text>
   <circle className={styles.circle} cx="758.012" cy="675.448" r="6.382"/>
   <circle className={styles.circle} cx="684.238" cy="576.731" r="6.382"/>
-  <text transform="matrix(3.125 0 0 3.125 715.949 646.21)" className={styles.text}>
+  <text transform="matrix(3.125 0 0 3.125 705.949 646.21)" className={styles.text}>
     <tspan x="-29.994" y="21.732"><tspan>Астрахань</tspan></tspan></text>
-  <text transform="matrix(3.125 0 0 3.125 677.223 721.506)" className={styles.text}>
+  <text transform="matrix(3.125 0 0 3.125 667.223 721.506)" className={styles.text}>
     <tspan x="-29.994" y="21.732"><tspan>Икряное</tspan></tspan></text>
   <text transform="matrix(3.125 0 0 3.125 672.116 805.75)" className={styles.text}>
     <tspan x="-29.994" y="21.732"><tspan>Оля</tspan></tspan></text>

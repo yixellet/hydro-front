@@ -42,11 +42,11 @@ class Popup extends React.Component {
               <tbody className={styles.tbody}>
                 {
                   days.map((day, idx) => {
-                    return <tr key={idx}>
+                    return <tr key={idx} className={styles.tbodyRow}>
                       <td>{day}</td>
                       {
-                        extr(this.props.data, day).map((d) => {
-                          return <td>{d['value']}</td>
+                        extr(this.props.data, day).map((d, idx) => {
+                          return <td key={idx}>{d['value']}</td>
                         })
                       }
                     </tr>

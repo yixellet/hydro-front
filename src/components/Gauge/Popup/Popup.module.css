@@ -131,3 +131,8 @@ td, th {
   width: 50px;
   text-align: center;
 }
+
+.tbodyRow:nth-of-type(10n) {
+  height: 30px;
+  vertical-align: top;
+}

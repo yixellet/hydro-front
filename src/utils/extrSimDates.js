@@ -1,11 +1,18 @@
 function extractDays(array, dayNumber) {
-  //const months = [1,2,3,4,5,6,7,8,9,10,11,12]
   const res = []
   array.forEach((item) => {
     const day = Number(item['date'].split('-')[2])
-    //const month = Number(item[0].split('-')[1])
+    const month = Number(item['date'].split('-')[1])
     if (day === dayNumber) {
-      res.push(item)
+      if (month === res.length + 1) {
+        res.push(item)
+      } else {
+        const delta = month - res.length
+        for(let i=1; i<delta; i++) {
+          res.push({"date": "", "value": ''})
+        }
+        res.push(item)
+      }
     }
   })
   return res;

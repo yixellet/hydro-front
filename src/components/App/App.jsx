@@ -10,16 +10,22 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      gauge: null,
+      gauges: [],
+      selectedGauge: null,
     }
+    this.handleGaugeClick = this.handleGaugeClick.bind(this)
   }
 
-  findGauge(name) {
-    this.props.gaugeList.forEach((gauge) => {
-      if (gauge.name === name) {
-        this.setState({gauge: gauge})
-      }
-    })
+  componentDidMount() {
+    this.props.api.getGauges()
+      .then((data) => {
+        this.setState({ gauges: data })
+      })
+  }
+
+  handleGaugeClick(id) {
+    this.setState({ selectedGauge: id })
+    console.log(this.state.selectedGauge)
   }
 
   render() {
@@ -28,11 +34,11 @@ class App extends React.Component {
         <Header title='Гидрологические посты Астраханской области' />
         <Switch>
           <Route exact path="/">
-            <StartPage gaugeList={this.props.gaugeList} />
+            <StartPage gaugeList={this.state.gauges} onGaugeClick={this.handleGaugeClick} />
           </Route>
-          <Route path="/gauge">
-            <Gauge info={this.props.gaugeList[14]} data={data} />
-          </Route>
+          {/*<Route path="/gauge">
+            <Gauge api={this.props.api} gaugeId={this.state.selectedGauge} />
+          </Route>*/}
         </Switch>
       </>
     );
