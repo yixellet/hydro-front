@@ -30,6 +30,16 @@ class Api {
     })
     .then(this.parseResponse)
   }
+
+  getFullYearObservations(code, year) {
+    return fetch(`${this.baseUrl}/obs?code=${code}&year=${year}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(this.parseResponse)
+  }
 };
 
 export default Api;

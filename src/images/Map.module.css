@@ -93,12 +93,12 @@
 
 .settlement {
   fill:#fff;
-  stroke:#fff;
-  stroke-width:.52916667;
+  stroke:rgb(165, 165, 165);
+  stroke-width: .5px;
   stroke-linecap:butt;
   stroke-linejoin:miter;
   stroke-opacity:1;
   stroke-miterlimit:4;
   stroke-dasharray:none;
-  fill-opacity:.12121212
+  fill-opacity: .1;
 }

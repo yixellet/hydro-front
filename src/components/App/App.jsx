@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
 import StartPage from '../StartPage/StartPage';
 import Gauge from '../Gauge/Gauge';
-import data from '../../data/dateConverter/out';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,13 +18,12 @@ class App extends React.Component {
   componentDidMount() {
     this.props.api.getGauges()
       .then((data) => {
-        this.setState({ gauges: data })
+        this.setState({ gauges: data.data })
       })
   }
 
   handleGaugeClick(id) {
     this.setState({ selectedGauge: id })
-    console.log(this.state.selectedGauge)
   }
 
   render() {
@@ -36,9 +34,9 @@ class App extends React.Component {
           <Route exact path="/">
             <StartPage gaugeList={this.state.gauges} onGaugeClick={this.handleGaugeClick} />
           </Route>
-          {/*<Route path="/gauge">
+          <Route path="/gauge/:id">
             <Gauge api={this.props.api} gaugeId={this.state.selectedGauge} />
-          </Route>*/}
+          </Route>
         </Switch>
       </>
     );

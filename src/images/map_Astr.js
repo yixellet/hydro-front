@@ -29,10 +29,18 @@ const mapAstr = <svg className={styles.map} viewBox="0 0 264.58333 264.58334" xm
   <g className={styles.g}>
     <circle className={styles.circle} cx="128.52135" cy="156.76562" r="3.2808328"/>
     <circle className={styles.circle} cx="128.52135" cy="156.76562" r="2.6458333"/>
-    <text transform="matrix(.26458 0 0 .26458 422.7299 125.9087)" className={styles.text}><tspan x="-1088" y="123.69531"><tspan>Астрахань</tspan></tspan></text>
-    <text transform="matrix(.26458 0 0 .26458 380.94069 -34.473398)" className={styles.text}><tspan x="-1088" y="121.92578"><tspan>Верхнее Лебяжье (56 км)</tspan></tspan></text>
-    <text transform="matrix(.26458 0 0 .26458 324.54646 237.29595)" className={styles.text}><tspan x="-1088" y="121.92578"><tspan>Икряное (43 км)</tspan></tspan></text>
-    <text transform="matrix(0 -.26458 .26458 0 238.21132 -119.4966)" className={styles.text}><tspan x="-1088" y="121.92578"><tspan>Килинчи (28 км)</tspan></tspan></text>
+    <text transform="matrix(.26458 0 0 .26458 422.7299 125.9087)" className={styles.text}>
+      <tspan x="-1088" y="123.69531"><tspan>Астрахань</tspan></tspan>
+    </text>
+    <text transform="matrix(.26458 0 0 .26458 380.94069 -34.473398)" className={styles.text}>
+      <tspan x="-1088" y="121.92578"><tspan>Верхнее Лебяжье (56 км)</tspan></tspan>
+    </text>
+    <text transform="matrix(.26458 0 0 .26458 324.54646 237.29595)" className={styles.text}>
+      <tspan x="-1088" y="121.92578"><tspan>Икряное (43 км)</tspan></tspan>
+    </text>
+    <text transform="matrix(0 -.26458 .26458 0 238.21132 -119.4966)" className={styles.text}>
+      <tspan x="-1088" y="121.92578"><tspan>Килинчи (28 км)</tspan></tspan>
+    </text>
   </g>
 </svg>
 

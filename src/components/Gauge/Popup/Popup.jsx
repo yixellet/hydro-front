@@ -10,7 +10,7 @@ class Popup extends React.Component {
     return (
       <div className={styles.background}>
         <div className={styles.popup}>
-          <button className={styles.closeButton}>
+          <button className={styles.closeButton} onClick={this.props.closePopup}>
             <svg 
               className={styles.svg} 
               viewBox="0 0 4.8001036 4.8001038" 
@@ -24,7 +24,7 @@ class Popup extends React.Component {
           <div className={styles.content}>
             <table className={styles.table}>
               <caption className={styles.header}>
-                <h3 className={styles.title}>{this.props.gaugeName} - {this.props.river}</h3>
+                <h3 className={styles.title}>{this.props.name} - {this.props.stream}</h3>
                 <div className={styles.info}>
                   <p className={styles.text}>{this.props.year} г.</p>
                 </div>

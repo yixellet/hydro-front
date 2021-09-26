@@ -1,4 +1,4 @@
-function dateToStr(date) {
+function dateToStr(sdate) {
   const months = [
     'января',
     'февраля',
@@ -13,6 +13,7 @@ function dateToStr(date) {
     'ноября',
     'декабря',
   ]
+  const date = new Date(sdate)
   const year = date.getFullYear()
   const month = months[date.getMonth()]
   const day = date.getDate()
