@@ -5,6 +5,18 @@ import map_common from '../../images/map_common';
 import styles from './StartPage.module.css';
 
 class StartPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      hoverGauge: null
+    }
+    this.handleHoverGauge = this.handleHoverGauge.bind(this)
+  }
+
+  handleHoverGauge(id) {
+    this.setState({ hoverGauge: id })
+  }
+
   render() {
     return (
       <main className={styles.main}>
@@ -17,7 +29,8 @@ class StartPage extends React.Component {
                     name={item.name} 
                     key={item.id} 
                     id={item.id} 
-                    onGaugeClick={this.props.onGaugeClick} />
+                    onGaugeClick={this.props.onGaugeClick}
+                    onGaugeHover={this.handleHoverGauge} />
                 })
               }
             </ul>

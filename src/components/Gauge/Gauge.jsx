@@ -4,7 +4,7 @@ import Form from './Form/Form';
 import Map from '../Map/Map';
 import Popup from './Popup/Popup';
 import mapAstr from '../../images/map_Astr';
-// import Years from './Years/Years';
+import Years from './Years/Years';
 import dateToStr from '../../utils/dates';
 import ddToDms from '../../utils/ddToDms';
 import styles from './Gauge.module.css';
@@ -76,18 +76,19 @@ class Gauge extends React.Component {
               <h1 className={styles.title}>{gaugeInfo.name} <span className={styles.river}>({gaugeInfo.stream})</span></h1>
               <p className={styles.code}>{gaugeInfo.code}</p>
               <div className={styles.coordsBlock}>
-                <svg width="30" height="25" viewBox="0 0 7.937 7.938" xmlns="http://www.w3.org/2000/svg">
+                <svg width="25" height="25" viewBox="0 0 7.937 7.938" xmlns="http://www.w3.org/2000/svg">
                   <path className={styles.path} d="M3.969 0C0 0 2.875 5.33 3.969 7.938 5.062 5.33 7.938 0 3.969 0Z"/>
                   <circle className={styles.circle} cx="3.969" cy="2.106" r="1.196"/>
                 </svg>
                 <p className={styles.coord}>{ddToDms(gaugeInfo.lat)} СШ</p>
                 <p className={styles.coord}>{ddToDms(gaugeInfo.lon)} ВД</p>
               </div>
+              
               <ul className={styles.zero}><h2 className={styles.blockTitle}>Абсолютная отметка нуля:</h2>
                 {
                   elevs.map((elev, idx) => {
                     return <li key={idx} className={styles.zero_item}>
-                      <span className={styles.elev}>{elev.elev.toFixed(2)}</span> (с {dateToStr(elev.startDate)}{elev.endDate ? ' по ' + dateToStr(elev.endDate) : null})
+                      <span className={styles.elev}>{elev.elevation.toFixed(2)}</span> (с {dateToStr(elev.startDate)}{elev.endDate ? ' по ' + dateToStr(elev.endDate) : null})
                     </li>
                   })
                 }
@@ -138,6 +139,7 @@ class Gauge extends React.Component {
             </>
           }
         </article>
+        <Years />
         {
           isYearObsPopupOpened &&        
           <Popup name = {gaugeInfo.name}
