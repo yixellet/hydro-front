@@ -42,6 +42,11 @@
   flex-direction: column;
 }
 
+.refEl_obs {
+  display: flex;
+  flex-direction: column;
+}
+
 .zero {
   margin: 50px 50px 0 0;
   padding: 0;

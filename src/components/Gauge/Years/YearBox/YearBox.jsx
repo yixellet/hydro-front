@@ -4,7 +4,7 @@ import styles from './YearBox.module.css';
 class YearBox extends React.Component {
   render() {
     return (
-        <div className={styles.box_full ? this.props.full : styles.box}></div>
+        <div className={this.props.full ? styles.box_full : styles.box}></div>
     );
   }
 }

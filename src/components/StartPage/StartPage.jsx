@@ -1,7 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem/ListItem';
-import Map from '../Map/Map';
-import map_common from '../../images/map_common';
+import CommonMap from './CommonMap/CommonMap';
 import styles from './StartPage.module.css';
 
 class StartPage extends React.Component {
@@ -35,7 +34,7 @@ class StartPage extends React.Component {
               }
             </ul>
           </nav>
-          <Map map={map_common}/>
+          <CommonMap hovId={this.state.hoverGauge} />
         </article>
       </main>
     );

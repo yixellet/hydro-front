@@ -1,0 +1,53 @@
+.text {
+  font-style:normal;
+  font-weight:400;
+  font-size:0.35rem;
+  line-height:1.25;
+  font-family:'Roboto Condensed';
+  letter-spacing:0;
+  word-spacing:0;
+  white-space:pre;
+  fill:#cbcbcb;
+  fill-opacity:1;
+  stroke:none
+}
+
+.text_hovered {
+  font-style:normal;
+  font-weight:400;
+  font-size:0.4rem;
+  line-height:1.25;
+  font-family:'Roboto Condensed';
+  letter-spacing:0;
+  word-spacing:0;
+  white-space:pre;
+  fill-opacity:1;
+  stroke:none;
+  fill: rgb(228, 162, 162);
+}
+
+.circle {
+  fill:#2f343f;
+  fill-opacity:1;
+  stroke:#c5c5c5;
+  stroke-width:3.125;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  stroke-dashoffset:2.60787;
+  stroke-opacity:1;
+  paint-order:fill markers stroke;
+  stop-color:#000
+}
+
+.circle_hovered {
+  fill:#2f343f;
+  fill-opacity:1;
+  stroke:rgb(228, 162, 162);
+  stroke-width:4;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  stroke-dashoffset:2.60787;
+  stroke-opacity:1;
+  paint-order:fill markers stroke;
+  stop-color:#000
+}

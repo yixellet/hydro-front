@@ -83,20 +83,21 @@ class Gauge extends React.Component {
                 <p className={styles.coord}>{ddToDms(gaugeInfo.lat)} СШ</p>
                 <p className={styles.coord}>{ddToDms(gaugeInfo.lon)} ВД</p>
               </div>
-              
-              <ul className={styles.zero}><h2 className={styles.blockTitle}>Абсолютная отметка нуля:</h2>
-                {
-                  elevs.map((elev, idx) => {
-                    return <li key={idx} className={styles.zero_item}>
-                      <span className={styles.elev}>{elev.elevation.toFixed(2)}</span> (с {dateToStr(elev.startDate)}{elev.endDate ? ' по ' + dateToStr(elev.endDate) : null})
-                    </li>
-                  })
-                }
-              </ul>
-              <div className={styles.block}>
-                <h2 className={styles.blockTitle}>Наблюдения:</h2>
-                <Form type='date' />
-                <Form type='year' action={this.handleGetYearObservations} />
+              <div className={styles.refEl_obs}>
+                <ul className={styles.zero}><h2 className={styles.blockTitle}>Абсолютная отметка нуля:</h2>
+                  {
+                    elevs.map((elev, idx) => {
+                      return <li key={idx} className={styles.zero_item}>
+                        <span className={styles.elev}>{elev.elevation.toFixed(2)}</span> (с {dateToStr(elev.startDate)}{elev.endDate ? ' по ' + dateToStr(elev.endDate) : null})
+                      </li>
+                    })
+                  }
+                </ul>
+                <div className={styles.block}>
+                  <h2 className={styles.blockTitle}>Наблюдения:</h2>
+                  <Form type='date' />
+                  <Form type='year' action={this.handleGetYearObservations} />
+                </div>
               </div>
               <div className={styles.countValues}>
                 <ul className={styles.zero}><h2 className={styles.blockTitle}>Расчётные значения:</h2>
