@@ -10,7 +10,7 @@ function extractDays(array, dayNumber) {
       } else {
         const delta = month - res.length
         for(let i=1; i<delta; i++) {
-          res.push({"date": "", "value": ''})
+          res.push({"date": "", "stage": ''})
         }
         res.push(item)
       }

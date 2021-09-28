@@ -5,7 +5,7 @@ import Map from '../Map/Map';
 import Popup from './Popup/Popup';
 import mapAstr from '../../images/map_Astr';
 import Years from './Years/Years';
-import dateToStr from '../../utils/dates';
+import { dateToStr } from '../../utils/dates';
 import ddToDms from '../../utils/ddToDms';
 import styles from './Gauge.module.css';
 
@@ -88,7 +88,7 @@ class Gauge extends React.Component {
                   {
                     elevs.map((elev, idx) => {
                       return <li key={idx} className={styles.zero_item}>
-                        <span className={styles.elev}>{elev.elevation.toFixed(2)}</span> (с {dateToStr(elev.startDate)}{elev.endDate ? ' по ' + dateToStr(elev.endDate) : null})
+                        <span className={styles.elev}>{elev.elevation.toFixed(2)}</span> (с {dateToStr(elev.startDate, 'word')}{elev.endDate ? ' по ' + dateToStr(elev.endDate, 'word') : null})
                       </li>
                     })
                   }

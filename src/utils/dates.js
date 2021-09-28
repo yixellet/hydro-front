@@ -1,4 +1,4 @@
-function dateToStr(sdate) {
+function dateToStr(sdate, type) {
   const months = [
     'января',
     'февраля',
@@ -17,7 +17,24 @@ function dateToStr(sdate) {
   const year = date.getFullYear()
   const month = months[date.getMonth()]
   const day = date.getDate()
-  return day + ' ' + month + ' ' + year + ' г.'
+  let res
+  if (type === 'word') {
+    res = day + ' ' + month + ' ' + year + ' г.'
+  } else if (type === 'dots') {
+    res = day + '.' + String(Number(date.getMonth())+1) + '.' + year + ' г.'
+  }
+  return res
 };
 
-export default dateToStr;
+function extractMonth(array, month) {
+  const res = []
+  array.forEach((item) => {
+    const date = new Date(item['date'])
+    if (date.getMonth() === month) {
+      res.push(item)
+    }
+  })
+  return res
+}
+
+module.exports = { dateToStr, extractMonth };
