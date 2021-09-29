@@ -28,8 +28,8 @@ class Popup extends React.Component {
           <div className={styles.content}>
             <div className={styles.data}>
               <div className={styles.info_block}>
-                <h3 className={styles.title}>{this.props.name} - {this.props.stream}</h3>
-                <p className={styles.text}>{this.props.year} г.</p>
+                <h3 className={styles.river}>{this.props.name} - {this.props.stream}</h3>
+                <p className={styles.year}>{this.props.year} г.</p>
                 <p className={styles.calcText}>Высший уровень  
                   <span className={styles.calcValue}>{maxAnnual['stage']}</span> ({dateToStr(maxAnnual['date'], 'dots')})
                 </p>
@@ -55,7 +55,7 @@ class Popup extends React.Component {
                   {
                     days.map((day, idx) => {
                       return <tr key={idx} className={styles.tbodyRow}>
-                        <td>{day}</td>
+                        <th>{day}</th>
                         {
                           extr(this.props.data, day).map((d, idx) => {
                             return <td key={idx}>{d['stage']}</td>
@@ -67,7 +67,7 @@ class Popup extends React.Component {
                 </tbody>
                 <tfoot className={styles.tfoot}>
                   <tr>
-                    <td>Высший</td>
+                    <th>Высший</th>
                     {
                       months.map((item, idx) => {
                         return <td key={idx}>{calcMax(extractMonth(this.props.data, idx))['stage']}</td>
@@ -75,7 +75,7 @@ class Popup extends React.Component {
                     }
                   </tr>
                   <tr>
-                    <td>Средний</td>
+                    <th>Средний</th>
                     {
                       months.map((item, idx) => {
                         return <td key={idx}>{calcAverage(extractMonth(this.props.data, idx))}</td>
@@ -83,7 +83,7 @@ class Popup extends React.Component {
                     }
                   </tr>
                   <tr>
-                    <td>Низший</td>
+                    <th>Низший</th>
                     {
                       months.map((item, idx) => {
                         return <td key={idx}>{calcMin(extractMonth(this.props.data, idx))['stage']}</td>

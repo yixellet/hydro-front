@@ -30,7 +30,19 @@
 }
 
 .info_block {
-  width: 500px;
+  width: 400px;
+}
+
+.river {
+  margin: 0;
+  font-family: 'Roboto Condensed';
+  font-size: 3rem;
+}
+
+.year {
+  margin-top: 20px;
+  font-family: 'Roboto Light';
+  font-size: 3rem;
 }
 
 .closeButton {
@@ -138,23 +150,34 @@
 .table {
   display: flex;
   flex-direction: column;
-  width: 80%;
   margin-bottom: 20px;
+  font-family: 'Roboto';
+  font-size: 0.9rem;
+	table-layout: fixed;
+  border-collapse: collapse; 
 }
 
 .thead {
-  font-family: 'Roboto';
-  font-size: 0.9rem;
+  font-weight: bold;
+	background: #efefef;
 }
 
 .tbody {
-  font-family: 'Roboto';
-  font-size: 0.9rem;
+  margin-bottom: 10px;
 }
 
-td, th {
-  width: 50px;
+.table tbody tr:nth-child(odd){
+	background: #fff;
+}
+.table tbody tr:nth-child(even){
+	background: #e7e9ec;
+}
+
+th, td {
+  width: 60px;
   text-align: center;
+  padding: 2px 5px;
+	border: 1px solid rgb(196, 196, 196);
 }
 
 .tbodyRow:nth-of-type(10), .tbodyRow:nth-of-type(20) {
