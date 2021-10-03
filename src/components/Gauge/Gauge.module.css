@@ -8,9 +8,18 @@
   margin: 40px 80px;
   width: calc(100% - 140px);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+}
+
+.nameBlock {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title {
@@ -20,6 +29,50 @@
   font-weight: 500;
   font-size: 4rem;
   display: inline;
+}
+
+.addButton {
+  cursor: pointer;
+  background-color: #4cacaf;
+  border: none;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addButton:hover {
+  background-color: #8bdcdf;
+}
+
+.addButtonCross {
+  fill:none;
+  stroke: #282c34;
+  stroke-width:1.05833;
+  stroke-linecap:round;
+  stroke-linejoin:miter;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  stroke-opacity:1;
+}
+
+.toolTip {
+  position: absolute;
+  right: 0px;
+  top: 70px;
+  display: none;
+  background-color: rgb(240, 240, 240);
+  padding: 5px 15px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #000;
+  font-family: 'Roboto';
+}
+
+.addButton:hover + .toolTip {
+  display: block;
 }
 
 .river {
@@ -35,6 +88,13 @@
   color: rgb(255, 255, 255);
   font-family: 'Roboto Light';
   font-size: 1.5rem;
+}
+
+.data_map {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .data {
