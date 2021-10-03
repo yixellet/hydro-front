@@ -1,4 +1,5 @@
 import React from 'react';
+import {Helmet} from "react-helmet";
 import { withRouter } from "react-router";
 import Form from './Form/Form';
 import Map from '../Map/Map';
@@ -61,6 +62,18 @@ class Gauge extends React.Component {
   render() {
     const { gaugeInfo, elevs, isFetching, error, isYearObsPopupOpened } = this.state;
     return (
+      <>
+      <Helmet>
+        <title>
+          {
+            error ?
+            'Ошибка загрузки данных' :
+              isFetching ?
+              'Загрузка данных' :
+              gaugeInfo.name
+          }
+        </title>
+      </Helmet>
       <main className={styles.main}>
         <article className={styles.content}>
           {
@@ -152,6 +165,7 @@ class Gauge extends React.Component {
                 closePopup={this.handleCloseYearObsPopup} />
         }
       </main>
+      </>
     );
   }
 }

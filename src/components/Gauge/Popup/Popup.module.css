@@ -31,6 +31,9 @@
 
 .info_block {
   width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .river {
@@ -125,7 +128,6 @@
 .buttonBlock {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
 }
 
 .button {
@@ -140,7 +142,7 @@
   display: inline-block;
   font-size: 1rem;
   font-family: 'Roboto';
-  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .button:hover {
@@ -150,7 +152,6 @@
 .table {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
   font-family: 'Roboto';
   font-size: 0.9rem;
 	table-layout: fixed;

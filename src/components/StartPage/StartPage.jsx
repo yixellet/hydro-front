@@ -1,4 +1,5 @@
 import React from 'react';
+import {Helmet} from "react-helmet";
 import ListItem from './ListItem/ListItem';
 import CommonMap from './CommonMap/CommonMap';
 import styles from './StartPage.module.css';
@@ -18,6 +19,10 @@ class StartPage extends React.Component {
 
   render() {
     return (
+      <>
+      <Helmet>
+        <title>Гидропосты Астраханской области</title>
+      </Helmet>
       <main className={styles.main}>
         <article className={styles.content}>
           <nav className={styles.nav}>
@@ -37,6 +42,7 @@ class StartPage extends React.Component {
           <CommonMap hovId={this.state.hoverGauge} />
         </article>
       </main>
+      </>
     );
   }
 }

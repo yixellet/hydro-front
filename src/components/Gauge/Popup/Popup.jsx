@@ -28,14 +28,20 @@ class Popup extends React.Component {
           <div className={styles.content}>
             <div className={styles.data}>
               <div className={styles.info_block}>
-                <h3 className={styles.river}>{this.props.name} - {this.props.stream}</h3>
-                <p className={styles.year}>{this.props.year} г.</p>
-                <p className={styles.calcText}>Высший уровень  
-                  <span className={styles.calcValue}>{maxAnnual['stage']}</span> ({dateToStr(maxAnnual['date'], 'dots')})
-                </p>
-                <p className={styles.calcText}>Низший уровень  
-                  <span className={styles.calcValue}>{minAnnual['stage']}</span> ({dateToStr(minAnnual['date'], 'dots')})
-                </p>
+                <div className={styles.textBlock}>
+                  <h3 className={styles.river}>{this.props.name} - {this.props.stream}</h3>
+                  <p className={styles.year}>{this.props.year} г.</p>
+                  <p className={styles.calcText}>Высший уровень  
+                    <span className={styles.calcValue}>{maxAnnual['stage']}</span> ({dateToStr(maxAnnual['date'], 'dots')})
+                  </p>
+                  <p className={styles.calcText}>Низший уровень  
+                    <span className={styles.calcValue}>{minAnnual['stage']}</span> ({dateToStr(minAnnual['date'], 'dots')})
+                  </p>
+                </div>
+                <div className={styles.buttonBlock}>
+                  <button className={styles.button}>Сохранить CSV</button>
+                  <button className={styles.button}>Сохранить PDF</button>
+                </div>
               </div>
               <table className={styles.table}>
                 <caption className={styles.header}>
@@ -92,10 +98,6 @@ class Popup extends React.Component {
                   </tr>
                 </tfoot>
               </table>
-            </div>
-            <div className={styles.buttonBlock}>
-              <button className={styles.button}>Сохранить CSV</button>
-              <button className={styles.button}>Сохранить PDF</button>
             </div>
           </div>
         </div>
