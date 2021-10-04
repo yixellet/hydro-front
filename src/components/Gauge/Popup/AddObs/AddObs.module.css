@@ -1,3 +1,8 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
 .title {
   margin: 0;
   font-family: 'Roboto';
@@ -8,4 +13,37 @@
   font-size: 2.5rem;
   margin-left: 10px;
   text-transform: uppercase;
+}
+
+.label {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.buttonBlock {
+  display: flex;
+}
+
+.button {
+  margin-top: 40px;
+  width: 150px;
+  cursor: pointer;
+  background-color: #4cacaf;
+  border: none;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  font-family: 'Roboto';
+  margin-right: 20px;
+}
+
+.button:hover {
+  background-color: #8bdcdf;
 }

@@ -22,10 +22,13 @@ class Gauge extends React.Component {
       isFetching: false,
       error: null,
       year: null,
+      date: null,
       isYearObsPopupOpened: false,
       yearObs: [],
+      singleObservation: null,
       isAddObsPopupOpened: false,
     }
+    this.handleGetSingleObservation = this.handleGetSingleObservation.bind(this)
     this.handleGetYearObservations = this.handleGetYearObservations.bind(this)
     this.handleCloseYearObsPopup = this.handleCloseYearObsPopup.bind(this)
     this.handleOpenAddObsPopup = this.handleOpenAddObsPopup.bind(this)
@@ -60,6 +63,14 @@ class Gauge extends React.Component {
       })
   }
 
+  handleGetSingleObservation(date) {
+    this.setState({date: date})
+    this.props.api.getSingleObservation(this.state.gaugeInfo.code, date)
+      .then((data) => {
+        this.setState({singleObservation: data.data})
+      })
+  }
+
   handleCloseYearObsPopup() {
     this.setState({isYearObsPopupOpened: false})
   }
@@ -73,7 +84,8 @@ class Gauge extends React.Component {
   }
 
   render() {
-    const { gaugeInfo, elevs, isFetching, error, isYearObsPopupOpened, isAddObsPopupOpened } = this.state;
+    const { gaugeInfo, elevs, isFetching, error, isYearObsPopupOpened, isAddObsPopupOpened, singleObservation } = this.state;
+    console.log(singleObservation)
     return (
       <>
       <Helmet>
@@ -130,7 +142,10 @@ class Gauge extends React.Component {
                   </ul>
                   <div className={styles.block}>
                     <h2 className={styles.blockTitle}>Наблюдения:</h2>
-                    <Form type='date' />
+                    <div className={styles.dateBlock}>
+                      <Form type='date' action={this.handleGetSingleObservation} />
+                      <p className={styles.elevForm}>{singleObservation ? singleObservation['state'].toFixed(2) : null}</p>
+                    </div>
                     <Form type='year' action={this.handleGetYearObservations} />
                   </div>
                 </div>
@@ -176,7 +191,7 @@ class Gauge extends React.Component {
             </>
           }
         </article>
-        {/*<Years />*/}
+        <Years />
         {
           isYearObsPopupOpened &&        
           <Popup content={<DailyObs 

@@ -5,7 +5,8 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      year: null
+      year: null,
+      date: null,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,21 +14,27 @@ class Form extends React.Component {
 
   handleChange(event) {
     this.setState({
-      year: event.target.value
+      year: event.target.value,
+      date: event.target.value
     });
   }
   
   handleSubmit(event) {
     event.preventDefault();
-    this.props.action(this.state.year)
-    this.setState({year: ''})
+    if (this.props.type === 'year') {
+      this.props.action(this.state.year)
+      this.setState({year: ''})
+    } else if (this.props.type === 'date') {
+      this.props.action(this.state.date)
+      this.setState({date: ''})
+    }
   }
 
   render() {
     if (this.props.type === 'date') {
       this.text = 'Дата:'
       this.widget = <input className={styles.date} type="date" 
-      id="date" name="date" />
+      id="date" name="date" onChange={this.handleChange} />
     } else if (this.props.type === 'year') {
       this.text = 'Год:'
       this.widget = <input className={styles.date} type="number" 

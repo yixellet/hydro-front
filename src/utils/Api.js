@@ -40,6 +40,16 @@ class Api {
     })
     .then(this.parseResponse)
   }
+
+  getSingleObservation(code, date) {
+    return fetch(`${this.baseUrl}/singleobs?code=${code}&date=${date}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(this.parseResponse)
+  }
 };
 
 export default Api;
