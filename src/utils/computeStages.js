@@ -1,7 +1,7 @@
 function calcMin(array) {
   let max = array[0]
   array.forEach((item) => {
-    if (item['stage'] > max['stage']) {
+    if (item['state'] > max['state']) {
       max = item
     }
   })
@@ -11,7 +11,7 @@ function calcMin(array) {
 function calcMax(array) {
   let min = array[0]
   array.forEach((item) => {
-    if (item['stage'] < min['stage']) {
+    if (item['state'] < min['state']) {
       min = item
     }
   })
@@ -21,7 +21,7 @@ function calcMax(array) {
 function calcAverage(array) {
   const values = []
   array.forEach((item) => {
-    values.push(Number(item['stage']))
+    values.push(Number(item['state']))
   })
   let sum = 0
   values.forEach((item) => {

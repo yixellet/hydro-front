@@ -4,6 +4,8 @@ import { withRouter } from "react-router";
 import Form from './Form/Form';
 import Map from '../Map/Map';
 import Popup from './Popup/Popup';
+import DailyObs from './Popup/DailyObs/DailyObs';
+import AddObs from './Popup/AddObs/AddObs';
 import mapAstr from '../../images/map_Astr';
 import Years from './Years/Years';
 import { dateToStr } from '../../utils/dates';
@@ -21,10 +23,13 @@ class Gauge extends React.Component {
       error: null,
       year: null,
       isYearObsPopupOpened: false,
-      yearObs: []
+      yearObs: [],
+      isAddObsPopupOpened: false,
     }
     this.handleGetYearObservations = this.handleGetYearObservations.bind(this)
     this.handleCloseYearObsPopup = this.handleCloseYearObsPopup.bind(this)
+    this.handleOpenAddObsPopup = this.handleOpenAddObsPopup.bind(this)
+    this.handleCloseAddObsPopup = this.handleCloseAddObsPopup.bind(this)
   }
 
   componentDidMount() {
@@ -59,8 +64,16 @@ class Gauge extends React.Component {
     this.setState({isYearObsPopupOpened: false})
   }
 
+  handleOpenAddObsPopup() {
+    this.setState({isAddObsPopupOpened: true})
+  }
+
+  handleCloseAddObsPopup() {
+    this.setState({isAddObsPopupOpened: false})
+  }
+
   render() {
-    const { gaugeInfo, elevs, isFetching, error, isYearObsPopupOpened } = this.state;
+    const { gaugeInfo, elevs, isFetching, error, isYearObsPopupOpened, isAddObsPopupOpened } = this.state;
     return (
       <>
       <Helmet>
@@ -87,7 +100,7 @@ class Gauge extends React.Component {
             <>
             <div className={styles.nameBlock}>
               <h1 className={styles.title}>{gaugeInfo.name} <span className={styles.river}>({gaugeInfo.stream})</span></h1>
-              <button className={styles.addButton}>
+              <button className={styles.addButton} onClick={this.handleOpenAddObsPopup}>
                 <svg width="18.142" height="18.142" viewBox="0 0 4.8 4.8" xmlns="http://www.w3.org/2000/svg">
                   <path className={styles.addButtonCross} d="M5.046 2.4H-.246M2.4 5.046V-.246"/>
                 </svg>
@@ -163,16 +176,20 @@ class Gauge extends React.Component {
             </>
           }
         </article>
-        <Years />
+        {/*<Years />*/}
         {
           isYearObsPopupOpened &&        
-          <Popup name = {gaugeInfo.name}
-                code = {gaugeInfo.code}
-                stream = {gaugeInfo.stream}
+          <Popup content={<DailyObs 
+                info={gaugeInfo}
                 year = {this.state.year}
                 elevs = {elevs}
-                data={this.state.yearObs}
+                data={this.state.yearObs} />}
                 closePopup={this.handleCloseYearObsPopup} />
+        }
+        {
+          isAddObsPopupOpened &&        
+          <Popup content={<AddObs info={gaugeInfo} />}
+                closePopup={this.handleCloseAddObsPopup} />
         }
       </main>
       </>
