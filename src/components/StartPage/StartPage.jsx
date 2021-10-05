@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import ListItem from './ListItem/ListItem';
-import CommonMap from './CommonMap/CommonMap';
+import LeafletMap from '../LeafletMap/LeafletMap';
 import styles from './StartPage.module.css';
 
 class StartPage extends React.Component {
@@ -39,7 +39,7 @@ class StartPage extends React.Component {
               }
             </ul>
           </nav>
-          <CommonMap hovId={this.state.hoverGauge} />
+          <LeafletMap gauges={this.props.gaugeList} hovered={this.state.hoverGauge} />
         </article>
       </main>
       </>

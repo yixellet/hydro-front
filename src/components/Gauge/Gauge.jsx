@@ -6,6 +6,7 @@ import Map from '../Map/Map';
 import Popup from './Popup/Popup';
 import DailyObs from './Popup/DailyObs/DailyObs';
 import AddObs from './Popup/AddObs/AddObs';
+import LeafletMap from '../LeafletMap/LeafletMap';
 import mapAstr from '../../images/map_Astr';
 import Years from './Years/Years';
 import { dateToStr } from '../../utils/dates';
