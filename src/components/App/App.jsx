@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
 import StartPage from '../StartPage/StartPage';
 import Gauge from '../Gauge/Gauge';
+import { GC } from '../context';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,15 +30,17 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Header title='Гидрологические посты Астраханской области' />
-        <Switch>
-          <Route exact path="/">
-            <StartPage gaugeList={this.state.gauges} onGaugeClick={this.handleGaugeClick} />
-          </Route>
-          <Route path="/gauge/:id">
-            <Gauge api={this.props.api} gaugeId={this.state.selectedGauge} />
-          </Route>
-        </Switch>
+        <GC.Provider value={this.state.gauges}>
+          <Header title='Гидрологические посты Астраханской области' />
+          <Switch>
+            <Route exact path="/">
+                <StartPage gaugeList={this.state.gauges} onGaugeClick={this.handleGaugeClick} />
+            </Route>
+            <Route path="/gauge/:id">
+              <Gauge api={this.props.api} gaugeId={this.state.selectedGauge} />
+            </Route>
+          </Switch>
+        </GC.Provider>
       </>
     );
   }

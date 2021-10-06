@@ -18,7 +18,12 @@ class Gauge extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      gaugeInfo: {},
+      code: null,
+      id: null,
+      name: null,
+      stream: null,
+      lat: null,
+      lon: null,
       elevs: [],
       isFetching: false,
       error: null,
@@ -42,8 +47,13 @@ class Gauge extends React.Component {
       .then((data) => {
         this.setState({
           isFetching: false,
-          gaugeInfo: data,
-          elevs: data.elevs
+          elevs: data.elevs,
+          code: data.code,
+          id: data.id,
+          name: data.name,
+          stream: data.stream,
+          lat: data.lat,
+          lon: data.lon,
         })
       },
       (error) => {
@@ -55,7 +65,7 @@ class Gauge extends React.Component {
 
   handleGetYearObservations(year) {
     this.setState({year: year})
-    this.props.api.getFullYearObservations(this.state.gaugeInfo.code, year)
+    this.props.api.getFullYearObservations(this.state.code, year)
       .then((data) => {
         this.setState({
           yearObs: data,
@@ -66,7 +76,7 @@ class Gauge extends React.Component {
 
   handleGetSingleObservation(date) {
     this.setState({date: date})
-    this.props.api.getSingleObservation(this.state.gaugeInfo.code, date)
+    this.props.api.getSingleObservation(this.state.code, date)
       .then((data) => {
         this.setState({singleObservation: data.data})
       })
@@ -85,8 +95,7 @@ class Gauge extends React.Component {
   }
 
   render() {
-    const { gaugeInfo, elevs, isFetching, error, isYearObsPopupOpened, isAddObsPopupOpened, singleObservation } = this.state;
-    console.log(singleObservation)
+    const { elevs, name, stream, code, lat, lon, isFetching, error, isYearObsPopupOpened, isAddObsPopupOpened, singleObservation } = this.state;
     return (
       <>
       <Helmet>
@@ -96,7 +105,7 @@ class Gauge extends React.Component {
             'Ошибка загрузки данных' :
               isFetching ?
               'Загрузка данных...' :
-              gaugeInfo.name
+              name
           }
         </title>
       </Helmet>
@@ -112,7 +121,7 @@ class Gauge extends React.Component {
             <p>ЗАГРУЗКА ДАННЫХ...</p> :
             <>
             <div className={styles.nameBlock}>
-              <h1 className={styles.title}>{gaugeInfo.name} <span className={styles.river}>({gaugeInfo.stream})</span></h1>
+              <h1 className={styles.title}>{name} <span className={styles.river}>({stream})</span></h1>
               <button className={styles.addButton} onClick={this.handleOpenAddObsPopup}>
                 <svg width="18.142" height="18.142" viewBox="0 0 4.8 4.8" xmlns="http://www.w3.org/2000/svg">
                   <path className={styles.addButtonCross} d="M5.046 2.4H-.246M2.4 5.046V-.246"/>
@@ -122,14 +131,14 @@ class Gauge extends React.Component {
             </div>
             <div className={styles.data_map}>
               <div className={styles.data}>
-                <p className={styles.code}>{gaugeInfo.code}</p>
+                <p className={styles.code}>{code}</p>
                 <div className={styles.coordsBlock}>
                   <svg width="25" height="25" viewBox="0 0 7.937 7.938" xmlns="http://www.w3.org/2000/svg">
                     <path className={styles.path} d="M3.969 0C0 0 2.875 5.33 3.969 7.938 5.062 5.33 7.938 0 3.969 0Z"/>
                     <circle className={styles.circle} cx="3.969" cy="2.106" r="1.196"/>
                   </svg>
-                  <p className={styles.coord}>{ddToDms(gaugeInfo.lat)} СШ</p>
-                  <p className={styles.coord}>{ddToDms(gaugeInfo.lon)} ВД</p>
+                  <p className={styles.coord}>{ddToDms(lat)} СШ</p>
+                  <p className={styles.coord}>{ddToDms(lon)} ВД</p>
                 </div>
                 <div className={styles.refEl_obs}>
                   <ul className={styles.zero}><h2 className={styles.blockTitle}>Абсолютная отметка нуля:</h2>
@@ -176,18 +185,19 @@ class Gauge extends React.Component {
                       <span className={styles.elev}>-21,64</span> 5%
                     </li>
                     <li className={styles.zero_item}>
-                      <span className={styles.elev}>-21,80 </span> 10%
+                      <span className={styles.elev}>-21,80</span> 10%
                     </li>
                     <li className={styles.zero_item}>
-                      <span className={styles.elev}>-22,08 </span> 25%
+                      <span className={styles.elev}>-22,08</span> 25%
                     </li>
                     <li className={styles.zero_item}>
-                      <span className={styles.elev}>-22,31 </span> 50%
+                      <span className={styles.elev}>-22,31</span> 50%
                     </li>
                   </ul>
                 </div>
               </div>
               <Map map={mapAstr}/>
+              {/*<LeafletMap lat={lat} lon={lon} name={name} />*/}
             </div>
             </>
           }
@@ -196,7 +206,8 @@ class Gauge extends React.Component {
         {
           isYearObsPopupOpened &&        
           <Popup content={<DailyObs 
-                info={gaugeInfo}
+                name={name}
+                stream={stream}
                 year = {this.state.year}
                 elevs = {elevs}
                 data={this.state.yearObs} />}
@@ -204,7 +215,7 @@ class Gauge extends React.Component {
         }
         {
           isAddObsPopupOpened &&        
-          <Popup content={<AddObs info={gaugeInfo} />}
+          <Popup content={<AddObs name={name} />}
                 closePopup={this.handleCloseAddObsPopup} />
         }
       </main>

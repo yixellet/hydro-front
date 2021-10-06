@@ -1,12 +1,31 @@
 import React from 'react';
+import HeadCell from './HeadCell/HeadCell';
+import SimpleCell from './SimpleCell/SimpleCell';
 import extr from '../../../../utils/extrSimDates';
 import { dateToStr, extractMonth } from '../../../../utils/dates';
 import { calcMax, calcMin, calcAverage } from '../../../../utils/computeStages';
 import styles from './DailyObs.module.css';
 
 class DailyObs extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      hoveredStageDate: null,
+      hoveredStageMonth: null
+    }
+    this.handleHoverStage = this.handleHoverStage.bind(this)
+  }
+
+  handleHoverStage(date) {
+    const d = new Date(date)
+    this.setState({
+      hoveredStageDate: d.getDate(),
+      hoveredStageMonth: d.getMonth()
+    })
+  }
+
   render() {
-    const {name, stream} = this.props.info
+    console.log(this.state.hoveredStageDate)
     const months = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII']
     const days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
     const maxAnnual = calcMax(this.props.data.data)
@@ -15,7 +34,7 @@ class DailyObs extends React.Component {
       <>
         <div className={styles.info_block}>
           <div className={styles.textBlock}>
-              <h3 className={styles.river}>{name} - {stream}</h3>
+              <h3 className={styles.river}>{this.props.name} - {this.props.stream}</h3>
               <p className={styles.year}>{this.props.year} г.</p>
               <p className={styles.calcText}>Высший уровень  
               <span className={styles.calcValue}>{maxAnnual['state'].toFixed(2)}</span> ({dateToStr(maxAnnual['date'], 'dots')})
@@ -35,10 +54,10 @@ class DailyObs extends React.Component {
           </caption>
           <thead className={styles.thead}>
               <tr>
-              <th>Число</th>
+              <HeadCell content={'Число'}/>
               {
                   months.map((month, idx) => {
-                  return <th key={idx}>{month}</th>
+                    return <HeadCell id={idx} key={idx} content={month} hoveredStageMonth={this.state.hoveredStageMonth} />
                   })
               }
               </tr>
@@ -46,39 +65,39 @@ class DailyObs extends React.Component {
           <tbody className={styles.tbody}>
               {
               days.map((day, idx) => {
-                  return <tr key={idx} className={styles.tbodyRow}>
-                  <th>{day}</th>
+                return <tr key={idx} className={styles.tbodyRow}>
+                  <HeadCell id={day} key={idx} content={day} hoveredStageMonth={this.state.hoveredStageDate} />
                   {
-                      extr(this.props.data.data, day).map((d, idx) => {
-                        return <td key={idx}>{d['state'] ? Number(d['state']).toFixed(2) : ''}</td>
-                      })
+                    extr(this.props.data.data, day).map((d, idx) => {
+                      return <SimpleCell key={idx} date={d['date']} content={d['state']} onHover={this.handleHoverStage} />
+                    })
                   }
-                  </tr>
+                </tr>
               })
               }
           </tbody>
           <tfoot className={styles.tfoot}>
               <tr>
-              <th>Высший</th>
+              <HeadCell content={'Высший'}/>
               {
                   months.map((item, idx) => {
-                  return <td key={idx}>{Number(calcMax(extractMonth(this.props.data.data, idx))['state']).toFixed(2)}</td>
+                  return <SimpleCell key={idx} content={calcMax(extractMonth(this.props.data.data, idx))['state']} />
                   })
               }
               </tr>
               <tr>
-              <th>Средний</th>
+              <HeadCell content={'Средний'}/>
               {
                   months.map((item, idx) => {
-                  return <td key={idx}>{calcAverage(extractMonth(this.props.data.data, idx))}</td>
+                  return <SimpleCell key={idx} content={calcAverage(extractMonth(this.props.data.data, idx))} />
                   })
               }
               </tr>
               <tr>
-              <th>Низший</th>
+              <HeadCell content={'Низший'}/>
               {
                   months.map((item, idx) => {
-                  return <td key={idx}>{Number(calcMin(extractMonth(this.props.data.data, idx))['state']).toFixed(2)}</td>
+                  return <SimpleCell key={idx} content={calcMin(extractMonth(this.props.data.data, idx))['state']} />
                   })
               }
               </tr>

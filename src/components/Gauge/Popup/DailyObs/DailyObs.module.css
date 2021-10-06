@@ -124,13 +124,13 @@
   flex-direction: column;
   font-family: 'Roboto';
   font-size: 0.9rem;
-    table-layout: fixed;
+  table-layout: fixed;
   border-collapse: collapse; 
 }
 
 .thead {
   font-weight: bold;
-    background: #efefef;
+  background: #efefef;
 }
 
 .tbody {
@@ -138,17 +138,10 @@
 }
 
 .table tbody tr:nth-child(odd){
-    background: #fff;
+  background: #fff;
 }
 .table tbody tr:nth-child(even){
-    background: #e7e9ec;
-}
-
-th, td {
-  width: 60px;
-  text-align: center;
-  padding: 2px 5px;
-    border: 1px solid rgb(196, 196, 196);
+  background: #e7e9ec;
 }
 
 .tbodyRow:nth-of-type(10), .tbodyRow:nth-of-type(20) {
