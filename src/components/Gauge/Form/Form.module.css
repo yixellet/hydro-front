@@ -26,6 +26,17 @@
   font-family: 'Roboto';
 }
 
+.date:invalid {
+  margin-right: 20px;
+  height: 33px;
+  width: 150px;
+  border-radius: 5px;
+  border: none;
+  padding: 0 10px;
+  font-family: 'Roboto';
+  border: 2px solid red;
+}
+
 .button {
   cursor: pointer;
   background-color: #4cacaf;

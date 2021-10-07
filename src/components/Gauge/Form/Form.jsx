@@ -23,7 +23,7 @@ class Form extends React.Component {
     event.preventDefault();
     if (this.props.type === 'year') {
       this.props.action(this.state.year)
-      this.setState({year: ''})
+      this.setState({year: null})
     } else if (this.props.type === 'date') {
       this.props.action(this.state.date)
       this.setState({date: ''})
@@ -34,11 +34,11 @@ class Form extends React.Component {
     if (this.props.type === 'date') {
       this.text = 'Дата:'
       this.widget = <input className={styles.date} type="date" 
-      id="date" name="date" onChange={this.handleChange} />
+      id="date" name="date" onChange={this.handleChange} required />
     } else if (this.props.type === 'year') {
       this.text = 'Год:'
       this.widget = <input className={styles.date} type="number" 
-      min="1960" max="2021" step="1" id="year" name="year" onChange={this.handleChange}  />
+      min="1960" max="2021" step="1" id="year" name="year" onChange={this.handleChange} required />
     }
     return (
       <form className={styles.form} onSubmit={this.handleSubmit}>

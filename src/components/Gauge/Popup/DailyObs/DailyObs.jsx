@@ -25,7 +25,6 @@ class DailyObs extends React.Component {
   }
 
   render() {
-    console.log(this.state.hoveredStageDate)
     const months = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII']
     const days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
     const maxAnnual = calcMax(this.props.data.data)
@@ -76,12 +75,16 @@ class DailyObs extends React.Component {
               })
               }
           </tbody>
+          
           <tfoot className={styles.tfoot}>
               <tr>
               <HeadCell content={'Высший'}/>
               {
                   months.map((item, idx) => {
-                  return <SimpleCell key={idx} content={calcMax(extractMonth(this.props.data.data, idx))['state']} />
+                  return <SimpleCell key={idx} 
+                                     content={calcMax(extractMonth(this.props.data.data, idx))['state']} 
+                                     date={calcMax(extractMonth(this.props.data.data, idx))['date']} 
+                                     onHover={this.handleHoverStage} />
                   })
               }
               </tr>
@@ -89,7 +92,7 @@ class DailyObs extends React.Component {
               <HeadCell content={'Средний'}/>
               {
                   months.map((item, idx) => {
-                  return <SimpleCell key={idx} content={calcAverage(extractMonth(this.props.data.data, idx))} />
+                  return <SimpleCell key={idx} content={calcAverage(extractMonth(this.props.data.data, idx))} onHover={this.handleHoverStage} />
                   })
               }
               </tr>
@@ -97,11 +100,14 @@ class DailyObs extends React.Component {
               <HeadCell content={'Низший'}/>
               {
                   months.map((item, idx) => {
-                  return <SimpleCell key={idx} content={calcMin(extractMonth(this.props.data.data, idx))['state']} />
+                  return <SimpleCell key={idx} 
+                                     content={calcMin(extractMonth(this.props.data.data, idx))['state']}
+                                     date={calcMin(extractMonth(this.props.data.data, idx))['date']}
+                                     onHover={this.handleHoverStage} />
                   })
               }
               </tr>
-          </tfoot>
+            </tfoot>
         </table>
       </>
     );

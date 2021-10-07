@@ -1,7 +1,7 @@
 function calcMin(array) {
   let max = array[0]
   array.forEach((item) => {
-    if (item['state'] > max['state']) {
+    if (item['state'] < max['state']) {
       max = item
     }
   })
@@ -11,7 +11,7 @@ function calcMin(array) {
 function calcMax(array) {
   let min = array[0]
   array.forEach((item) => {
-    if (item['state'] < min['state']) {
+    if (item['state'] > min['state']) {
       min = item
     }
   })
