@@ -50,6 +50,16 @@ class Api {
     })
     .then(this.parseResponse)
   }
+
+  async getObsCount(code) {
+    const res = await fetch(`${this.baseUrl}/count?code=${code}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    return this.parseResponse(res);
+  }
 };
 
 export default Api;

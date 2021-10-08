@@ -1,0 +1,29 @@
+.box {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  border: 1px solid #282c34;
+  border-radius: 3px;
+  cursor: default;
+}
+
+.box_full {
+  background-color: rgb(129, 187, 129);
+}
+
+.box_full:hover > .toolTip {
+  display: block;
+}
+
+.toolTip {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background-color: #fff;
+  z-index: 2;
+  padding: 2px;
+  border-radius: 2px;
+  font-family: 'Roboto';
+  display: none;
+}

@@ -6,7 +6,7 @@ import Map from '../Map/Map';
 import Popup from './Popup/Popup';
 import DailyObs from './Popup/DailyObs/DailyObs';
 import AddObs from './Popup/AddObs/AddObs';
-import LeafletMap from '../LeafletMap/LeafletMap';
+//import LeafletMap from '../LeafletMap/LeafletMap';
 import mapAstr from '../../images/map_Astr';
 import Years from './Years/Years';
 import { dateToStr } from '../../utils/dates';
@@ -33,6 +33,7 @@ class Gauge extends React.Component {
       yearObs: [],
       singleObservation: null,
       isAddObsPopupOpened: false,
+      countObs: []
     }
     this.handleGetSingleObservation = this.handleGetSingleObservation.bind(this)
     this.handleGetYearObservations = this.handleGetYearObservations.bind(this)
@@ -55,12 +56,20 @@ class Gauge extends React.Component {
           lat: data.lat,
           lon: data.lon,
         })
+        this.props.api.getObsCount(data.code)
+          .then((d) => {
+            this.setState({
+              countObs: d.data,
+              isFetching: false
+            })
+          })
       },
       (error) => {
         this.setState({
           error: error
         })
       })
+    
   }
 
   handleGetYearObservations(year) {
@@ -95,18 +104,24 @@ class Gauge extends React.Component {
   }
 
   render() {
-    const { elevs, name, stream, code, lat, lon, isFetching, error, isYearObsPopupOpened, isAddObsPopupOpened, singleObservation } = this.state;
+    const { elevs, 
+            name, 
+            stream, 
+            code, 
+            lat, 
+            lon, 
+            isFetching, 
+            error, 
+            isYearObsPopupOpened, 
+            isAddObsPopupOpened, 
+            singleObservation,
+            countObs 
+          } = this.state;
     return (
       <>
       <Helmet>
         <title>
-          {
-            error ?
-            'Ошибка загрузки данных' :
-              isFetching ?
-              'Загрузка данных...' :
-              name
-          }
+          { error ? 'Ошибка загрузки данных' : isFetching ? 'Загрузка данных...' : name }
         </title>
       </Helmet>
       <main className={styles.main}>
@@ -202,7 +217,7 @@ class Gauge extends React.Component {
             </>
           }
         </article>
-        <Years />
+        <Years data={countObs}/>
         {
           isYearObsPopupOpened &&        
           <Popup content={<DailyObs 
