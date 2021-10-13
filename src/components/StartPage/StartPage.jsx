@@ -24,7 +24,7 @@ class StartPage extends React.Component {
                       return <ListItem 
                         name={item.name} 
                         key={item.id} 
-                        id={item.id} 
+                        code={item.code} 
                         onGaugeClick={this.props.onGaugeClick} />
                     })
                   }

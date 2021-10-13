@@ -7,8 +7,8 @@ class ListItem extends React.Component {
     return (
       <li className={styles.item}>
         <Link className={styles.link} 
-              to={`/gauge/${this.props.id}`} 
-              onClick={() => this.props.onGaugeClick(this.props.id)}>
+              to={`/gauge/${this.props.code}`} 
+              onClick={() => this.props.onGaugeClick(this.props.code)}>
           <h2 className={styles.title}>{this.props.name}</h2>
         </Link>
       </li>

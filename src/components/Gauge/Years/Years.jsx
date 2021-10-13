@@ -6,7 +6,7 @@ class Years extends React.Component {
   
   decades = [1960,1970,1980,1990,2000,2010,2020]
   render() {
-    const boxes = {}
+    const boxes = []
     this.props.data.forEach((year) => {
       const decade = []
       boxes.push({year: year, comp: <YearBox key={year.year} year={year.year} fill={year.filled} total={year.total} />})

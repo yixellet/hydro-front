@@ -19,7 +19,6 @@ class Gauge extends React.Component {
     super(props)
     this.state = {
       code: null,
-      id: null,
       name: null,
       stream: null,
       lat: null,
@@ -44,15 +43,14 @@ class Gauge extends React.Component {
 
   componentDidMount() {
     this.setState({isFetching: true})
-    this.props.api.getGaugeInfo(this.props.match.params.id)
+    this.props.api.getGaugeInfo(this.props.match.params.code)
       .then((data) => {
         this.setState({
-          isFetching: false,
           elevs: data.elevs,
           code: data.code,
-          id: data.id,
+          uuid: data.uuid,
           name: data.name,
-          stream: data.stream,
+          river: data.river,
           lat: data.lat,
           lon: data.lon,
         })
@@ -106,7 +104,7 @@ class Gauge extends React.Component {
   render() {
     const { elevs, 
             name, 
-            stream, 
+            river, 
             code, 
             lat, 
             lon, 
@@ -133,10 +131,10 @@ class Gauge extends React.Component {
               <h2>Ой, здесь ничего нет :(</h2>
             </> :
             isFetching ?
-            <p>ЗАГРУЗКА ДАННЫХ...</p> :
+            <div className={styles.isFetching}><p>ЗАГРУЗКА ДАННЫХ...</p></div> :
             <>
             <div className={styles.nameBlock}>
-              <h1 className={styles.title}>{name} <span className={styles.river}>({stream})</span></h1>
+              <h1 className={styles.title}>{name} <span className={styles.river}>({river})</span></h1>
               <button className={styles.addButton} onClick={this.handleOpenAddObsPopup}>
                 <svg width="18.142" height="18.142" viewBox="0 0 4.8 4.8" xmlns="http://www.w3.org/2000/svg">
                   <path className={styles.addButtonCross} d="M5.046 2.4H-.246M2.4 5.046V-.246"/>
@@ -160,7 +158,7 @@ class Gauge extends React.Component {
                     {
                       elevs.map((elev, idx) => {
                         return <li key={idx} className={styles.zero_item}>
-                          <span className={styles.elev}>{elev.elevation.toFixed(2)}</span> (с {dateToStr(elev.startDate, 'word')}{elev.endDate ? ' по ' + dateToStr(elev.endDate, 'word') : null})
+                          <span className={styles.elev}>{elev.elev.toFixed(2)}</span> (с {dateToStr(elev.startDate, 'word')}{elev.endDate ? ' по ' + dateToStr(elev.endDate, 'word') : null})
                         </li>
                       })
                     }
@@ -214,15 +212,15 @@ class Gauge extends React.Component {
               <Map map={mapAstr}/>
               {/*<LeafletMap lat={lat} lon={lon} name={name} />*/}
             </div>
+            <Years data={countObs}/>
             </>
           }
         </article>
-        <Years data={countObs}/>
         {
           isYearObsPopupOpened &&        
           <Popup content={<DailyObs 
                 name={name}
-                stream={stream}
+                stream={river}
                 year = {this.state.year}
                 elevs = {elevs}
                 data={this.state.yearObs} />}

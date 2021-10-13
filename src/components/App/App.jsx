@@ -23,8 +23,8 @@ class App extends React.Component {
       })
   }
 
-  handleGaugeClick(id) {
-    this.setState({ selectedGauge: id })
+  handleGaugeClick(code) {
+    this.setState({ selectedGauge: code })
   }
 
   render() {
@@ -36,7 +36,7 @@ class App extends React.Component {
             <Route exact path="/">
                 <StartPage gaugeList={this.state.gauges} onGaugeClick={this.handleGaugeClick} />
             </Route>
-            <Route path="/gauge/:id">
+            <Route path="/gauge/:code">
               <Gauge api={this.props.api} gaugeId={this.state.selectedGauge} />
             </Route>
           </Switch>

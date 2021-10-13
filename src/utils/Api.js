@@ -21,8 +21,8 @@ class Api {
     .then(this.parseResponse)
   }
 
-  getGaugeInfo(id) {
-    return fetch(`${this.baseUrl}/gauges/${id}/`, {
+  getGaugeInfo(code) {
+    return fetch(`${this.baseUrl}/gauges/${code}/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
