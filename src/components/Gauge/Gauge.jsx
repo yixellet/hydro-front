@@ -67,7 +67,6 @@ class Gauge extends React.Component {
           error: error
         })
       })
-    
   }
 
   handleGetYearObservations(year) {
@@ -110,6 +109,8 @@ class Gauge extends React.Component {
             lon, 
             isFetching, 
             error, 
+            year,
+            yearObs,
             isYearObsPopupOpened, 
             isAddObsPopupOpened, 
             singleObservation,
@@ -221,9 +222,8 @@ class Gauge extends React.Component {
           <Popup content={<DailyObs 
                 name={name}
                 stream={river}
-                year = {this.state.year}
-                elevs = {elevs}
-                data={this.state.yearObs} />}
+                year = {year}
+                data={yearObs} />}
                 closePopup={this.handleCloseYearObsPopup} />
         }
         {

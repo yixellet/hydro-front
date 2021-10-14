@@ -27,8 +27,8 @@ class DailyObs extends React.Component {
   render() {
     const months = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII']
     const days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
-    const maxAnnual = calcMax(this.props.data.data)
-    const minAnnual = calcMin(this.props.data.data)
+    const maxAnnual = calcMax(this.props.data)
+    const minAnnual = calcMin(this.props.data)
     return (
       <>
         <div className={styles.info_block}>
@@ -36,10 +36,10 @@ class DailyObs extends React.Component {
               <h3 className={styles.river}>{this.props.name} - {this.props.stream}</h3>
               <p className={styles.year}>{this.props.year} г.</p>
               <p className={styles.calcText}>Высший уровень  
-              <span className={styles.calcValue}>{maxAnnual['state'].toFixed(2)}</span> ({dateToStr(maxAnnual['date'], 'dots')})
+              <span className={styles.calcValue}>{maxAnnual['stage'].toFixed(2)}</span> ({dateToStr(maxAnnual['date'], 'dots')})
               </p>
               <p className={styles.calcText}>Низший уровень  
-              <span className={styles.calcValue}>{minAnnual['state'].toFixed(2)}</span> ({dateToStr(minAnnual['date'], 'dots')})
+              <span className={styles.calcValue}>{minAnnual['stage'].toFixed(2)}</span> ({dateToStr(minAnnual['date'], 'dots')})
               </p>
           </div>
           <div className={styles.buttonBlock}>
@@ -67,8 +67,8 @@ class DailyObs extends React.Component {
                 return <tr key={idx} className={styles.tbodyRow}>
                   <HeadCell id={day} key={idx} content={day} hoveredStageMonth={this.state.hoveredStageDate} />
                   {
-                    extr(this.props.data.data, day).map((d, idx) => {
-                      return <SimpleCell key={idx} date={d['date']} content={d['state']} onHover={this.handleHoverStage} />
+                    extr(this.props.data, day).map((d, idx) => {
+                      return <SimpleCell key={idx} date={d['date']} content={d['stage']} props={d['props']} onHover={this.handleHoverStage} />
                     })
                   }
                 </tr>
@@ -82,8 +82,8 @@ class DailyObs extends React.Component {
               {
                   months.map((item, idx) => {
                   return <SimpleCell key={idx} 
-                                     content={calcMax(extractMonth(this.props.data.data, idx))['state']} 
-                                     date={calcMax(extractMonth(this.props.data.data, idx))['date']} 
+                                     content={calcMax(extractMonth(this.props.data, idx))['stage']} 
+                                     date={calcMax(extractMonth(this.props.data, idx))['date']} 
                                      onHover={this.handleHoverStage} />
                   })
               }
@@ -92,7 +92,7 @@ class DailyObs extends React.Component {
               <HeadCell content={'Средний'}/>
               {
                   months.map((item, idx) => {
-                  return <SimpleCell key={idx} content={calcAverage(extractMonth(this.props.data.data, idx))} onHover={this.handleHoverStage} />
+                  return <SimpleCell key={idx} content={calcAverage(extractMonth(this.props.data, idx))} onHover={this.handleHoverStage} />
                   })
               }
               </tr>
@@ -101,8 +101,8 @@ class DailyObs extends React.Component {
               {
                   months.map((item, idx) => {
                   return <SimpleCell key={idx} 
-                                     content={calcMin(extractMonth(this.props.data.data, idx))['state']}
-                                     date={calcMin(extractMonth(this.props.data.data, idx))['date']}
+                                     content={calcMin(extractMonth(this.props.data, idx))['stage']}
+                                     date={calcMin(extractMonth(this.props.data, idx))['date']}
                                      onHover={this.handleHoverStage} />
                   })
               }
