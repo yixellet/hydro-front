@@ -1,6 +1,8 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import { withRouter } from "react-router";
+import List from './List/List';
+import BlockHeader from './BlockHeader/BlockHeader';
 import Form from './Form/Form';
 import Map from '../Map/Map';
 import Popup from './Popup/Popup';
@@ -19,11 +21,15 @@ class Gauge extends React.Component {
     super(props)
     this.state = {
       code: null,
-      name: null,
-      stream: null,
+      elevs: [],
       lat: null,
       lon: null,
-      elevs: [],
+      maxStage_calc: null,
+      minStage_calc: null,
+      meannAnnual_gms: null,
+      name: null,
+      river: null,
+      uuid: null,
       isFetching: false,
       error: null,
       year: null,
@@ -46,13 +52,18 @@ class Gauge extends React.Component {
     this.props.api.getGaugeInfo(this.props.match.params.code)
       .then((data) => {
         this.setState({
-          elevs: data.elevs,
+          data: data,
           code: data.code,
-          uuid: data.uuid,
-          name: data.name,
-          river: data.river,
+          elevs: data.elevs,
           lat: data.lat,
           lon: data.lon,
+          maxStage_calc: data.maxStage_calc,
+          minStage_calc: data.minStage_calc,
+          meannAnnual_gms: data.meannAnnual_gms,
+          name: data.name,
+          probabilities_gms: data.probabilities_gms,
+          river: data.river,
+          uuid: data.uuid
         })
         this.props.api.getObsCount(data.code)
           .then((d) => {
@@ -114,7 +125,8 @@ class Gauge extends React.Component {
             isYearObsPopupOpened, 
             isAddObsPopupOpened, 
             singleObservation,
-            countObs 
+            countObs,
+            probabilities_gms
           } = this.state;
     return (
       <>
@@ -188,6 +200,10 @@ class Gauge extends React.Component {
                       <span className={styles.elev}>-26,87</span> минимальный уровень (1993 г.)
                     </li>
                   </ul>
+                  
+                  <List header={<BlockHeader header='Обеспеченные значения:' />}
+                  list={probabilities_gms} />
+
                   <ul className={styles.zero}><h2 className={styles.blockTitle}>Обеспеченные значения:</h2>
                     <li className={styles.zero_item}>
                       <span className={styles.elev}>-21,36</span> 1%

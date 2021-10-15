@@ -41,7 +41,7 @@ class SimpleCell extends React.Component {
               this.props.props.map((prop) => {
                 return <li key={prop['uuid']}>{prop['description']}</li>
               }) :
-              null
+              <div>-</div>
             }
           </ul>
         </div>
