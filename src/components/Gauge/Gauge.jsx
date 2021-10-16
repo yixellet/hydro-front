@@ -11,7 +11,6 @@ import AddObs from './Popup/AddObs/AddObs';
 //import LeafletMap from '../LeafletMap/LeafletMap';
 import mapAstr from '../../images/map_Astr';
 import Years from './Years/Years';
-import { dateToStr } from '../../utils/dates';
 import ddToDms from '../../utils/ddToDms';
 import styles from './Gauge.module.css';
 
@@ -20,16 +19,15 @@ class Gauge extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      uuid: null,
       code: null,
-      elevs: [],
-      lat: null,
-      lon: null,
-      maxStage_calc: null,
-      minStage_calc: null,
-      meannAnnual_gms: null,
       name: null,
       river: null,
-      uuid: null,
+      lat: null,
+      lon: null,
+      statistics: [],
+      probabilities: [],
+      elevs: [],
       isFetching: false,
       error: null,
       year: null,
@@ -57,11 +55,9 @@ class Gauge extends React.Component {
           elevs: data.elevs,
           lat: data.lat,
           lon: data.lon,
-          maxStage_calc: data.maxStage_calc,
-          minStage_calc: data.minStage_calc,
-          meannAnnual_gms: data.meannAnnual_gms,
+          statistics: data.statistics,
           name: data.name,
-          probabilities_gms: data.probabilities_gms,
+          probabilities: data.probabilities,
           river: data.river,
           uuid: data.uuid
         })
@@ -81,6 +77,12 @@ class Gauge extends React.Component {
   }
 
   handleGetYearObservations(year) {
+    /**
+     * Запрашивает через АПИ наблюдения за конкретный год
+     * 
+     * @param {number} year Год наблюдений
+     * @returns {void}
+     */
     this.setState({year: year})
     this.props.api.getFullYearObservations(this.state.code, year)
       .then((data) => {
@@ -126,7 +128,8 @@ class Gauge extends React.Component {
             isAddObsPopupOpened, 
             singleObservation,
             countObs,
-            probabilities_gms
+            probabilities,
+            statistics
           } = this.state;
     return (
       <>
@@ -167,17 +170,10 @@ class Gauge extends React.Component {
                   <p className={styles.coord}>{ddToDms(lon)} ВД</p>
                 </div>
                 <div className={styles.refEl_obs}>
-                  <ul className={styles.zero}><h2 className={styles.blockTitle}>Абсолютная отметка нуля:</h2>
-                    {
-                      elevs.map((elev, idx) => {
-                        return <li key={idx} className={styles.zero_item}>
-                          <span className={styles.elev}>{elev.elev.toFixed(2)}</span> (с {dateToStr(elev.startDate, 'word')}{elev.endDate ? ' по ' + dateToStr(elev.endDate, 'word') : null})
-                        </li>
-                      })
-                    }
-                  </ul>
+                  <List header={<BlockHeader header='Абсолютная отметка нуля:' />} 
+                        elevs={elevs} />
                   <div className={styles.block}>
-                    <h2 className={styles.blockTitle}>Наблюдения:</h2>
+                    <BlockHeader header='Наблюдения:' />
                     <div className={styles.dateBlock}>
                       <Form type='date' action={this.handleGetSingleObservation} />
                       <p className={styles.elevForm}>{singleObservation ? singleObservation['state'].toFixed(2) : null}</p>
@@ -186,44 +182,10 @@ class Gauge extends React.Component {
                   </div>
                 </div>
                 <div className={styles.countValues}>
-                  <ul className={styles.zero}><h2 className={styles.blockTitle}>Расчётные значения:</h2>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-24,83</span> среднемноголетний уровень (безледный период)
-                    </li>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-24,79</span> среднемноголетний уровень (весь период)
-                    </li>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-20,18</span> максимальный уровень (1979 г.)
-                    </li>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-26,87</span> минимальный уровень (1993 г.)
-                    </li>
-                  </ul>
-                  
+                  <List header={<BlockHeader header='Расчетные значения' />} 
+                        list={statistics}/>                  
                   <List header={<BlockHeader header='Обеспеченные значения:' />}
-                  list={probabilities_gms} />
-
-                  <ul className={styles.zero}><h2 className={styles.blockTitle}>Обеспеченные значения:</h2>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-21,36</span> 1%
-                    </li>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-21,52</span> 3%
-                    </li>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-21,64</span> 5%
-                    </li>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-21,80</span> 10%
-                    </li>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-22,08</span> 25%
-                    </li>
-                    <li className={styles.zero_item}>
-                      <span className={styles.elev}>-22,31</span> 50%
-                    </li>
-                  </ul>
+                        list={probabilities} />
                 </div>
               </div>
               <Map map={mapAstr}/>

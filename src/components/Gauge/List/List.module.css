@@ -1,0 +1,22 @@
+.list {
+  margin: 50px 50px 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.item {
+  font-family: 'Roboto Light';
+  font-size: 0.9rem;
+  color: rgb(255, 255, 255);
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.elevation {
+  min-width: 50px;
+  font-size: 1.6rem;
+  font-family: 'Roboto Condensed';
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+  margin-right: 10px;
+}
