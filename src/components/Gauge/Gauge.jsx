@@ -1,5 +1,5 @@
 import React from 'react';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import { withRouter } from "react-router";
 import List from './List/List';
 import BlockHeader from './BlockHeader/BlockHeader';
@@ -170,7 +170,7 @@ class Gauge extends React.Component {
                   <p className={styles.coord}>{ddToDms(lon)} ВД</p>
                 </div>
                 <div className={styles.refEl_obs}>
-                  <List header={<BlockHeader header='Абсолютная отметка нуля:' />} 
+                  <List header={<BlockHeader header='Абсолютная отметка нуля' />} 
                         elevs={elevs} />
                   <div className={styles.block}>
                     <BlockHeader header='Наблюдения:' />
@@ -184,7 +184,7 @@ class Gauge extends React.Component {
                 <div className={styles.countValues}>
                   <List header={<BlockHeader header='Расчетные значения' />} 
                         list={statistics}/>                  
-                  <List header={<BlockHeader header='Обеспеченные значения:' />}
+                  <List header={<BlockHeader header='Обеспеченные значения' />}
                         list={probabilities} />
                 </div>
               </div>
