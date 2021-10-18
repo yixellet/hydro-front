@@ -46,9 +46,9 @@
 }
 
 .button_left {
-  box-shadow: 3px 0 3px rgb(182, 182, 182);
+  box-shadow: 3px 0 3px rgb(117, 117, 117);
 }
 
 .button_right {
-  box-shadow: -3px 0 3px rgb(182, 182, 182);
+  box-shadow: -3px 0 3px rgb(128, 128, 128);
 }
