@@ -1,0 +1,43 @@
+.coordsBlock {
+  color: #fff;
+  display: inline;
+  text-decoration: none;
+}
+
+.coordsBlock:hover {
+  color:rgb(170, 255, 203);
+  text-decoration: underline;
+}
+
+.coordsBlock:hover  .path {
+  fill: rgb(170, 255, 203);
+}
+
+.coord {
+  display: inline;
+  font-family: 'Roboto Condensed';
+}
+
+.coord:first-of-type {
+  margin-right: 30px;
+}
+
+.path {
+  fill:#fff;
+  fill-opacity:1;
+  stroke:none;
+  stroke-width:.264583px;
+  stroke-linecap:butt;
+  stroke-linejoin:miter;
+  stroke-opacity:1
+}
+
+.circle {
+  fill:#282c34;
+  fill-opacity:1;
+  stroke:none;
+  stroke-width:.231744;
+  stroke-dashoffset:2.60787;
+  paint-order:fill markers stroke;
+  stop-color:#000
+}

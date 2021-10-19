@@ -1,5 +1,5 @@
 import React from 'react';
-import Switcher from './Switcher/Switcher';
+// import Switcher from './Switcher/Switcher';
 import { dateToStr } from '../../../utils/dates';
 import styles from './List.module.css';
 
@@ -17,7 +17,7 @@ class List extends React.Component {
     return (
       <ul className={styles.list}>
         {this.props.header}
-        {this.props.list ? <Switcher var1='ЦГМС' var2='Расчет' /> : null}
+        {/*this.props.list ? <Switcher var1='ЦГМС' var2='Расчет' /> : null*/}
         {
           this.props.list ?
           this.props.list.map((item, idx) => {

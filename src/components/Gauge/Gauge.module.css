@@ -26,11 +26,16 @@
 
 .nameBlock {
   position: relative;
-  width: 100%;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.code_coords {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .title {
@@ -140,36 +145,4 @@
 .countValues {
   display: flex;
   flex-direction: row;
-}
-
-.coordsBlock {
-  color: #fff;
-  display: inline;
-  margin-top: 15px;
-}
-
-.coord {
-  display: inline;
-  margin-right: 30px;
-  font-family: 'Roboto Condensed';
-}
-
-.path {
-  fill:#fff;
-  fill-opacity:1;
-  stroke:none;
-  stroke-width:.264583px;
-  stroke-linecap:butt;
-  stroke-linejoin:miter;
-  stroke-opacity:1
-}
-
-.circle {
-  fill:#282c34;
-  fill-opacity:1;
-  stroke:none;
-  stroke-width:.231744;
-  stroke-dashoffset:2.60787;
-  paint-order:fill markers stroke;
-  stop-color:#000
 }

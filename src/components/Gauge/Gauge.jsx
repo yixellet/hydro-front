@@ -5,13 +5,15 @@ import List from './List/List';
 import BlockHeader from './BlockHeader/BlockHeader';
 import Form from './Form/Form';
 import Map from '../Map/Map';
+import Geolink from './Geolink/Geolink';
 import Popup from './Popup/Popup';
 import DailyObs from './Popup/DailyObs/DailyObs';
 import AddObs from './Popup/AddObs/AddObs';
 //import LeafletMap from '../LeafletMap/LeafletMap';
 import mapAstr from '../../images/map_Astr';
 import Years from './Years/Years';
-import ddToDms from '../../utils/ddToDms';
+
+import fillEmptyObs from '../../utils/fillEmptyObs';
 import styles from './Gauge.module.css';
 
 class Gauge extends React.Component {
@@ -86,6 +88,7 @@ class Gauge extends React.Component {
     this.setState({year: year})
     this.props.api.getFullYearObservations(this.state.code, year)
       .then((data) => {
+        fillEmptyObs(data)
         this.setState({
           yearObs: data,
           isYearObsPopupOpened: true
@@ -151,24 +154,19 @@ class Gauge extends React.Component {
             <>
             <div className={styles.nameBlock}>
               <h1 className={styles.title}>{name} <span className={styles.river}>({river})</span></h1>
-              <button className={styles.addButton} onClick={this.handleOpenAddObsPopup}>
+              {/*<button className={styles.addButton} onClick={this.handleOpenAddObsPopup}>
                 <svg width="18.142" height="18.142" viewBox="0 0 4.8 4.8" xmlns="http://www.w3.org/2000/svg">
                   <path className={styles.addButtonCross} d="M5.046 2.4H-.246M2.4 5.046V-.246"/>
                 </svg>
               </button>
-              <div className={styles.toolTip}>Добавить наблюдения</div>
+              <div className={styles.toolTip}>Добавить наблюдения</div>*/}
+              <div className={styles.code_coords}>
+                <p className={styles.code}>{code}</p>
+                <Geolink lat={lat} lon={lon} />
+              </div>
             </div>
             <div className={styles.data_map}>
               <div className={styles.data}>
-                <p className={styles.code}>{code}</p>
-                <div className={styles.coordsBlock}>
-                  <svg width="25" height="25" viewBox="0 0 7.937 7.938" xmlns="http://www.w3.org/2000/svg">
-                    <path className={styles.path} d="M3.969 0C0 0 2.875 5.33 3.969 7.938 5.062 5.33 7.938 0 3.969 0Z"/>
-                    <circle className={styles.circle} cx="3.969" cy="2.106" r="1.196"/>
-                  </svg>
-                  <p className={styles.coord}>{ddToDms(lat)} СШ</p>
-                  <p className={styles.coord}>{ddToDms(lon)} ВД</p>
-                </div>
                 <div className={styles.refEl_obs}>
                   <List header={<BlockHeader header='Абсолютная отметка нуля' />} 
                         elevs={elevs} />
