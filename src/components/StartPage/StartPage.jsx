@@ -23,7 +23,7 @@ class StartPage extends React.Component {
                     data.map((item) => {
                       return <ListItem 
                         name={item.name} 
-                        key={item.id} 
+                        key={item.code} 
                         code={item.code} 
                         onGaugeClick={this.props.onGaugeClick} />
                     })

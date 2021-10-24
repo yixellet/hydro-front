@@ -1,17 +1,24 @@
 export default function fillEmptyObs(obs) {
+  /**
+   * Заполняет пустые дни в массиве годовых наблюдений
+   */
   const year = new Date(obs[0]['date']).getFullYear()
+  const yearDates = []
   const startDate = new Date(year, 0, 1)
-  const res = []
-  while (startDate.getFullYear() === year) {
-    console.log(startDate)
-    const observation = obs.find((observ) => {
-      return new Date(observ['date']).getTime() === startDate.getTime()
-    })
-    if (observation) {
-      res.push({date: startDate, stage: observation['stage'], props: observation['props']})
-    } else {
-      res.push({date: startDate, stage: null, props: null})
-    }
+  while (startDate.getFullYear() < year+1) {
+    yearDates.push(new Date(startDate.toString()))
     startDate.setDate(startDate.getDate() + 1)
   }
+
+  const res = []
+  yearDates.forEach((dateq) => {
+    const observation = obs.find((o) => {
+      const obsDate = new Date(o['date'])
+      return obsDate.getMonth() === dateq.getMonth() && obsDate.getDate() === dateq.getDate()
+    })
+    res.push(observation? 
+             {date: new Date(observation['date']), stage: observation['stage'], props: observation['props']}:
+             {date: dateq, stage: null, props: null})
+  })
+  return(res)
 }
