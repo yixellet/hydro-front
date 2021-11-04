@@ -1,25 +1,42 @@
 function calcMin(array) {
-  let max = array[0]
+  const preparedArray = []
   array.forEach((item) => {
-    if (item['stage'] && item['stage'] < max['stage']) {
-      max = item
+    if (item['stage']) {
+      preparedArray.push(item)
     }
   })
-  return max
+  if (preparedArray.length > 0) {
+    let max = preparedArray[0]
+    preparedArray.forEach((item) => {
+      if (item['stage'] && item['stage'] < max['stage']) {
+        max = item
+      }
+    })
+    return max
+  } else {
+    return {date: null, stage: null, value: null, refel: null, props: null}
+  }
 };
 
 function calcMax(array) {
-  const nn = array.find((item) => {
-    return item['stage'] !== null
-  })
-  let min = nn
+  const preparedArray = []
   array.forEach((item) => {
-    if (item['stage'] && item['stage'] > min['stage']) {
-      min = item
+    if (item['stage']) {
+      preparedArray.push(item)
     }
   })
-  return min
-};
+  if (preparedArray.length > 0) {
+    let max = preparedArray[0]
+    preparedArray.forEach((item) => {
+      if (item['stage'] && item['stage'] > max['stage']) {
+        max = item
+      }
+    })
+    return max
+  } else {
+    return {date: null, stage: null, value: null, refel: null, props: null}
+  }
+}
 
 function calcAverage(array) {
   const values = []

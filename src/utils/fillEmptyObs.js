@@ -16,9 +16,16 @@ export default function fillEmptyObs(obs) {
       const obsDate = new Date(o['date'])
       return obsDate.getMonth() === dateq.getMonth() && obsDate.getDate() === dateq.getDate()
     })
-    res.push(observation? 
-             {date: new Date(observation['date']), stage: observation['stage'], props: observation['props']}:
-             {date: dateq, stage: null, props: null})
+    res.push(observation ? 
+            {
+              date: new Date(observation['date']), 
+              stage: observation['stage'],
+              value: observation['value'],
+              refel: observation['refel'],
+              props: observation['props']
+            }:
+            {date: dateq, stage: null, value: null, refel: null, props: null}
+    )
   })
   return(res)
 }

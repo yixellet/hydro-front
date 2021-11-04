@@ -54,3 +54,8 @@
 .button:hover {
   background-color: #8bdcdf;
 }
+
+.nodata {
+  color: #fff;
+  margin-left: 20px;
+}

@@ -36,10 +36,10 @@ class DailyObs extends React.Component {
               <h3 className={styles.river}>{this.props.name} - {this.props.stream}</h3>
               <p className={styles.year}>{this.props.year} г.</p>
               <p className={styles.calcText}>Высший уровень  
-              <span className={styles.calcValue}>{maxAnnual['stage'].toFixed(2)}</span> ({dateToStr(maxAnnual['date'], 'dots')})
+                <span className={styles.calcValue}>{maxAnnual['stage'].toFixed(2)}</span> ({dateToStr(maxAnnual['date'], 'dots')})
               </p>
               <p className={styles.calcText}>Низший уровень  
-              <span className={styles.calcValue}>{minAnnual['stage'].toFixed(2)}</span> ({dateToStr(minAnnual['date'], 'dots')})
+                <span className={styles.calcValue}>{minAnnual['stage'].toFixed(2)}</span> ({dateToStr(minAnnual['date'], 'dots')})
               </p>
           </div>
           <div className={styles.buttonBlock}>
@@ -68,7 +68,14 @@ class DailyObs extends React.Component {
                   <HeadCell id={day} key={idx} content={day} hoveredStageMonth={this.state.hoveredStageDate} />
                   {
                     extr(this.props.data, day).map((d, idx) => {
-                      return <SimpleCell key={idx} date={d['date']} content={d['stage']} props={d['props']} onHover={this.handleHoverStage} />
+                      return <SimpleCell 
+                                key={idx} 
+                                date={d['date']} 
+                                stage={d['stage']} 
+                                value={d['value']}
+                                refel={d['refel']}
+                                props={d['props']} 
+                                onHover={this.handleHoverStage} />
                     })
                   }
                 </tr>
@@ -82,7 +89,7 @@ class DailyObs extends React.Component {
               {
                   months.map((item, idx) => {
                   return <SimpleCell key={idx} 
-                                     content={calcMax(extractMonth(this.props.data, idx))['stage']} 
+                                     stage={calcMax(extractMonth(this.props.data, idx))['stage']} 
                                      date={calcMax(extractMonth(this.props.data, idx))['date']} 
                                      onHover={this.handleHoverStage} />
                   })
@@ -92,7 +99,10 @@ class DailyObs extends React.Component {
               <HeadCell content={'Средний'}/>
               {
                   months.map((item, idx) => {
-                  return <SimpleCell key={idx} content={calcAverage(extractMonth(this.props.data, idx))} onHover={this.handleHoverStage} />
+                  return <SimpleCell 
+                            key={idx} 
+                            stage={calcAverage(extractMonth(this.props.data, idx))} 
+                            onHover={this.handleHoverStage} />
                   })
               }
               </tr>
@@ -101,7 +111,7 @@ class DailyObs extends React.Component {
               {
                   months.map((item, idx) => {
                   return <SimpleCell key={idx} 
-                                     content={calcMin(extractMonth(this.props.data, idx))['stage']}
+                                     stage={calcMin(extractMonth(this.props.data, idx))['stage']}
                                      date={calcMin(extractMonth(this.props.data, idx))['date']}
                                      onHover={this.handleHoverStage} />
                   })

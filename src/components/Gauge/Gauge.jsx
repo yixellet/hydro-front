@@ -88,10 +88,13 @@ class Gauge extends React.Component {
     this.setState({year: year})
     this.props.api.getFullYearObservations(this.state.code, year)
       .then((data) => {
-        
+        data.length > 0 ?
         this.setState({
           yearObs: fillEmptyObs(data),
           isYearObsPopupOpened: true
+        }) :
+        this.setState({
+          yearObs: [],
         })
       })
   }
